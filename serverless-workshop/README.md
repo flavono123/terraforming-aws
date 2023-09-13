@@ -9,4 +9,4 @@
 
 ### [API Gateway 생성하기](https://catalog.us-east-1.prod.workshops.aws/workshops/4923c0ff-6470-46e1-9884-7c6ee63e7136/ko-KR/simple-api-service/create-apigw)
 
-![api-gateway-50a14c1q](img/api-gateway-50a14c1q.png)
+![api-gateway-post-order-50a3c28](img/50a3c28.png)
