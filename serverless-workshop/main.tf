@@ -48,7 +48,6 @@ resource "aws_apigatewayv2_api" "delivery_api" {
   protocol_type = "HTTP"
 }
 
-
 ### Deploy/Stages
 resource "aws_apigatewayv2_stage" "default" {
   api_id      = aws_apigatewayv2_api.delivery_api.id
