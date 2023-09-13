@@ -2,4 +2,4 @@ terraform.tfstate*
 planfile
 .pluralith
 tmp.tf
-buids/
+builds/

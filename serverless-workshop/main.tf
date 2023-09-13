@@ -114,4 +114,11 @@ module "order_queue" {
   version = "~> 4.0.2"
 
   name = "OrderQueue"
+
+  # Dead-letter queue
+  create_dlq = true
+  dlq_name   = "OrderDLQ"
+  redrive_policy = {
+    maxReceiveCount = 1
+  }
 }
