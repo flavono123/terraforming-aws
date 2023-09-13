@@ -19,3 +19,5 @@
 ### [API Gateway를 Lambda 함수에 연결하기](https://catalog.us-east-1.prod.workshops.aws/workshops/4923c0ff-6470-46e1-9884-7c6ee63e7136/ko-KR/simple-api-service/integ-apigw-lambda#api-gateway)
 
 ![apigw-lambda-integrate-0563184](img/0563184.png)
+
+## [비동기 처리 모델로 변경하기](https://catalog.us-east-1.prod.workshops.aws/workshops/4923c0ff-6470-46e1-9884-7c6ee63e7136/ko-KR/api-async)
