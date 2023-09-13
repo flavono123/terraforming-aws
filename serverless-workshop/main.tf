@@ -66,7 +66,7 @@ resource "aws_apigatewayv2_route" "post_order" {
   route_key = local.apigateway.route_key
 }
 
-# ## Lambda
+## Lambda
 module "order_function" {
   source = "terraform-aws-modules/lambda/aws"
 
