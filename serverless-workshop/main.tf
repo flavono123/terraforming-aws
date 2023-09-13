@@ -61,9 +61,21 @@ resource "aws_apigatewayv2_stage" "dev" {
   auto_deploy = true
 }
 
+### Develop/Routes
+
 resource "aws_apigatewayv2_route" "post_order" {
   api_id    = aws_apigatewayv2_api.delivery_api.id
   route_key = local.apigateway.route_key
+  target    = "integrations/${aws_apigatewayv2_integration.lambda_order_function.id}"
+}
+
+### Devlop/Integrations
+resource "aws_apigatewayv2_integration" "lambda_order_function" {
+  api_id           = aws_apigatewayv2_api.delivery_api.id
+  integration_type = "AWS_PROXY"
+
+  integration_method = "POST"
+  integration_uri    = module.order_function.lambda_function_invoke_arn
 }
 
 ## Lambda
@@ -76,4 +88,13 @@ module "order_function" {
   handler       = "index.handler"
 
   source_path = "src/index.js"
+
+  create_current_version_allowed_triggers = false
+
+  allowed_triggers = {
+    APIGatewayDelivery = {
+      service    = "apigateway"
+      source_arn = "${aws_apigatewayv2_api.delivery_api.execution_arn}/*/*"
+    }
+  }
 }
