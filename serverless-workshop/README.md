@@ -15,7 +15,6 @@
 
 ![lambda-function-order-function-f7a7545](img/f7a7545.png)
 
-
 ### [API Gateway를 Lambda 함수에 연결하기](https://catalog.us-east-1.prod.workshops.aws/workshops/4923c0ff-6470-46e1-9884-7c6ee63e7136/ko-KR/simple-api-service/integ-apigw-lambda#api-gateway)
 
 ![apigw-lambda-integrate-0563184](img/0563184.png)
@@ -29,3 +28,7 @@
 ### [API Gateway, Lambda를 SQS에 연결하기](https://catalog.us-east-1.prod.workshops.aws/workshops/4923c0ff-6470-46e1-9884-7c6ee63e7136/ko-KR/api-async/integration)
 
 ![8bada3d](img/8bada3d.png)
+
+### [Dead-letter queue 적용하기](https://catalog.us-east-1.prod.workshops.aws/workshops/4923c0ff-6470-46e1-9884-7c6ee63e7136/ko-KR/api-async/dead-letter-queue)
+
+![a4665ea](img/a4665ea.png)
