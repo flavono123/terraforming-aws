@@ -71,16 +71,23 @@ resource "aws_apigatewayv2_route" "post_order" {
 
 ### Devlop/Integrations
 resource "aws_apigatewayv2_integration" "lambda_order_function" {
-  api_id           = aws_apigatewayv2_api.delivery_api.id
-  integration_type = "AWS_PROXY"
+  api_id          = aws_apigatewayv2_api.delivery_api.id
+  credentials_arn = aws_iam_role.apigwdeliveryorderrole_f75_cf62_c.arn
 
-  integration_method = "POST"
-  integration_uri    = module.order_function.lambda_function_invoke_arn
+  integration_type    = "AWS_PROXY"
+  integration_subtype = "SQS-SendMessage"
+
+  request_parameters = {
+    "QueueUrl"    = module.order_queue.queue_id
+    "MessageBody" = "$request.body.messageBody"
+  }
 }
+
 
 ## Lambda
 module "order_function" {
-  source = "terraform-aws-modules/lambda/aws"
+  source  = "terraform-aws-modules/lambda/aws"
+  version = "~> 6.0.0"
 
   function_name = "OrderFunction"
   runtime       = "nodejs16.x"
@@ -91,18 +98,25 @@ module "order_function" {
 
   create_current_version_allowed_triggers = false
 
-  allowed_triggers = {
-    APIGatewayDelivery = {
-      service    = "apigateway"
-      source_arn = "${aws_apigatewayv2_api.delivery_api.execution_arn}/*/*"
+  event_source_mapping = {
+    sqs = {
+      event_source_arn = module.order_queue.queue_arn
     }
   }
+
+  attach_policy = true
+  policy        = "arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole"
 }
 
 ## SQS
-module "sqs" {
+module "order_queue" {
   source  = "terraform-aws-modules/sqs/aws"
   version = "~> 4.0.2"
 
   name = "OrderQueue"
+}
+
+moved {
+  from = module.sqs
+  to   = module.order_queue
 }
