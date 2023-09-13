@@ -25,3 +25,7 @@
 ### [SQS 구성하기](https://catalog.us-east-1.prod.workshops.aws/workshops/4923c0ff-6470-46e1-9884-7c6ee63e7136/ko-KR/api-async/create-sqs)
 
 ![a000639](img/a000639.png)
+
+### [API Gateway, Lambda를 SQS에 연결하기](https://catalog.us-east-1.prod.workshops.aws/workshops/4923c0ff-6470-46e1-9884-7c6ee63e7136/ko-KR/api-async/integration)
+
+![8bada3d](img/8bada3d.png)
