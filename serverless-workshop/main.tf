@@ -12,6 +12,9 @@ locals {
     stage_name = "dev"
     route_key  = "POST /order"
   }
+  lambda_name = "OrderFunction"
+  sqs_name    = "OrderQueue"
+  dlq_name    = "OrderDLQ"
 }
 
 # cf2tf <(wget -qO- https://static.us-east-1.prod.workshops.aws/public/ebdd2af6-e669-4dd3-99bd-c9de7921832e/assets/serverless-lab-cf.yaml)
@@ -89,7 +92,7 @@ module "order_function" {
   source  = "terraform-aws-modules/lambda/aws"
   version = "~> 6.0.0"
 
-  function_name = "OrderFunction"
+  function_name = local.lambda_name
   runtime       = "nodejs16.x"
   architectures = ["arm64"]
   handler       = "index.handler"
@@ -113,11 +116,11 @@ module "order_queue" {
   source  = "terraform-aws-modules/sqs/aws"
   version = "~> 4.0.2"
 
-  name = "OrderQueue"
+  name = local.sqs_name
 
   # Dead-letter queue
   create_dlq = true
-  dlq_name   = "OrderDLQ"
+  dlq_name   = local.dlq_name
   redrive_policy = {
     maxReceiveCount = 1
   }
