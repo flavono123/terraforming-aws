@@ -10,6 +10,7 @@ locals {
   apigateway = {
     api_name   = "delivery-api"
     stage_name = "dev"
+    route_key  = "POST /order"
   }
 }
 
@@ -58,4 +59,9 @@ resource "aws_apigatewayv2_stage" "dev" {
   api_id      = aws_apigatewayv2_api.delivery_api.id
   name        = local.apigateway.stage_name
   auto_deploy = true
+}
+
+resource "aws_apigatewayv2_route" "post_order" {
+  api_id    = aws_apigatewayv2_api.delivery_api.id
+  route_key = local.apigateway.route_key
 }

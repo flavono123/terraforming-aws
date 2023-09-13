@@ -1,3 +1,5 @@
 terraform.tfstate*
 planfile
 .pluralith
+tmp.tf
+src/
