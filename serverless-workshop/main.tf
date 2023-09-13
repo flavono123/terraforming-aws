@@ -115,8 +115,3 @@ module "order_queue" {
 
   name = "OrderQueue"
 }
-
-moved {
-  from = module.sqs
-  to   = module.order_queue
-}
