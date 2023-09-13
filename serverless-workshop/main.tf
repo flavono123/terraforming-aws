@@ -65,3 +65,15 @@ resource "aws_apigatewayv2_route" "post_order" {
   api_id    = aws_apigatewayv2_api.delivery_api.id
   route_key = local.apigateway.route_key
 }
+
+# ## Lambda
+module "order_function" {
+  source = "terraform-aws-modules/lambda/aws"
+
+  function_name = "OrderFunction"
+  runtime       = "nodejs16.x"
+  architectures = ["arm64"]
+  handler       = "index.handler"
+
+  source_path = "src/index.js"
+}
