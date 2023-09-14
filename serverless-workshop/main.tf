@@ -173,3 +173,20 @@ module "order_event" {
 resource "aws_cloudwatch_log_group" "event_delivery_order" {
   name = "/aws/events/food/order"
 }
+
+## SNS
+
+module "pickup_order_topic" {
+  source  = "terraform-aws-modules/sns/aws"
+  version = "~> 5.4.0"
+
+  name         = "PickupOrderTopic"
+  display_name = "PickupOrder"
+
+  subscriptions = {
+    email = {
+      protocol = "email"
+      endpoint = "flavono123@gmail.com"
+    }
+  }
+}
