@@ -125,3 +125,48 @@ module "order_queue" {
     maxReceiveCount = 1
   }
 }
+
+## EventBridge
+
+module "order_event" {
+  source  = "terraform-aws-modules/eventbridge/aws"
+  version = "~> 2.3.0"
+
+  create_role = true
+  bus_name    = "OrderEventBus"
+
+  append_rule_postfix = false
+
+  attach_sqs_policy = true
+  sqs_target_arns = [
+    module.order_queue.queue_arn
+  ]
+
+  rules = {
+    DeliveryOrderRule = {
+      event_pattern = jsonencode({
+        source = ["com.mycompany.order"],
+        detail = {
+          orderType = ["order-delivery"]
+        }
+      })
+    }
+  }
+
+  targets = {
+    DeliveryOrderRule = [
+      {
+        name = "order"
+        arn  = aws_cloudwatch_log_group.event_delivery_order.arn
+      },
+      {
+        name = "OrderQueue"
+        arn  = module.order_queue.queue_arn
+      }
+    ]
+  }
+}
+
+resource "aws_cloudwatch_log_group" "event_delivery_order" {
+  name = "/aws/events/food/order"
+}

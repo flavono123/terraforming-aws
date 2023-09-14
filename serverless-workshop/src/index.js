@@ -6,7 +6,8 @@ exports.handler = async (event) => {
 
   event.Records.forEach(record => {
     const body = JSON.parse(record['body']);
-    if (body.hasOwnProperty(ERROR_KEY) && body[ERROR_KEY]) {
+
+    if (body['detail'].hasOwnProperty(ERROR_KEY) && body['detail'][ERROR_KEY]) {
       const errorMessage = "Exception has occurred while processing an order";
       console.error(errorMessage);
       throw new Error(errorMessage);
@@ -19,4 +20,3 @@ exports.handler = async (event) => {
   };
   return response;
 };
-
