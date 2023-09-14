@@ -72,17 +72,20 @@ resource "aws_apigatewayv2_route" "post_order" {
   target    = "integrations/${aws_apigatewayv2_integration.lambda_order_function.id}"
 }
 
-### Devlop/Integrations
+## Devlop/Integrations
+
 resource "aws_apigatewayv2_integration" "lambda_order_function" {
   api_id          = aws_apigatewayv2_api.delivery_api.id
   credentials_arn = aws_iam_role.apigwdeliveryorderrole_f75_cf62_c.arn
 
   integration_type    = "AWS_PROXY"
-  integration_subtype = "SQS-SendMessage"
+  integration_subtype = "EventBridge-PutEvents"
 
   request_parameters = {
-    "QueueUrl"    = module.order_queue.queue_id
-    "MessageBody" = "$request.body.messageBody"
+    EventBusName = module.order_event.eventbridge_bus_name,
+    Source       = "com.mycompany.order",
+    DetailType   = "OrderType",
+    Detail       = "$request.body.messageBody",
   }
 }
 
