@@ -32,3 +32,9 @@
 ### [Dead-letter queue 적용하기](https://catalog.us-east-1.prod.workshops.aws/workshops/4923c0ff-6470-46e1-9884-7c6ee63e7136/ko-KR/api-async/dead-letter-queue)
 
 ![a4665ea](img/a4665ea.png)
+
+## [EventBridge를 사용한 Event-driven 모델 적용하기](https://catalog.us-east-1.prod.workshops.aws/workshops/4923c0ff-6470-46e1-9884-7c6ee63e7136/ko-KR/eventbridge)
+
+### [EventBridge를 구성하고 SQS에 연결하기](https://catalog.us-east-1.prod.workshops.aws/workshops/4923c0ff-6470-46e1-9884-7c6ee63e7136/ko-KR/eventbridge/create-eventbridge)
+
+![17ca8bf](img/17ca8bf.png)
