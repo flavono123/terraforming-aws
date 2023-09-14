@@ -12,9 +12,17 @@ locals {
     stage_name = "dev"
     route_key  = "POST /order"
   }
-  lambda_name = "OrderFunction"
-  sqs_name    = "OrderQueue"
-  dlq_name    = "OrderDLQ"
+  lambda_name          = "OrderFunction"
+  sqs_name             = "OrderQueue"
+  dlq_name             = "OrderDLQ"
+  eventbridge_bus_name = "OrderEventBus"
+  sns = {
+    topic_name   = "PickupOrderTopic"
+    display_name = "PickupOrder"
+    subscription = {
+      email = "flavono123@gmail.com" # pull up as variable if want to redacted
+    }
+  }
 }
 
 # cf2tf <(wget -qO- https://static.us-east-1.prod.workshops.aws/public/ebdd2af6-e669-4dd3-99bd-c9de7921832e/assets/serverless-lab-cf.yaml)
@@ -136,7 +144,7 @@ module "order_event" {
   version = "~> 2.3.0"
 
   create_role = true
-  bus_name    = "OrderEventBus"
+  bus_name    = local.eventbridge_bus_name
 
   append_rule_postfix = false
 
@@ -180,13 +188,13 @@ module "pickup_order_topic" {
   source  = "terraform-aws-modules/sns/aws"
   version = "~> 5.4.0"
 
-  name         = "PickupOrderTopic"
-  display_name = "PickupOrder"
+  name         = local.sns.topic_name
+  display_name = local.sns.display_name
 
   subscriptions = {
     email = {
       protocol = "email"
-      endpoint = "flavono123@gmail.com"
+      endpoint = local.sns.subscription.email
     }
   }
 }
