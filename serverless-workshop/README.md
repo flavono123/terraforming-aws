@@ -42,3 +42,7 @@
 ### [API Gateway를 EventBridge에 연결하기](https://catalog.us-east-1.prod.workshops.aws/workshops/4923c0ff-6470-46e1-9884-7c6ee63e7136/ko-KR/eventbridge/apigw-eb)
 
 ![102d450](img/102d450.png)
+
+### [픽업 주문 메시지 처리 구성](https://catalog.us-east-1.prod.workshops.aws/workshops/4923c0ff-6470-46e1-9884-7c6ee63e7136/ko-KR/eventbridge/pickup-order)
+
+![709bd94](img/709bd94.png)
