@@ -20,7 +20,7 @@ locals {
     topic_name   = "PickupOrderTopic"
     display_name = "PickupOrder"
     subscription = {
-      email = "flavono123@gmail.com" # pull up as variable if want to redacted
+      email = "flavono123@gmail.com" # pull up as variable if want to be redacted
     }
   }
 }
@@ -153,12 +153,25 @@ module "order_event" {
     module.order_queue.queue_arn
   ]
 
+  attach_sns_policy = true
+  sns_target_arns = [
+    module.pickup_order_topic.topic_arn
+  ]
+
   rules = {
     DeliveryOrderRule = {
       event_pattern = jsonencode({
         source = ["com.mycompany.order"],
         detail = {
           orderType = ["order-delivery"]
+        }
+      })
+    }
+    PickupOrderRule = {
+      event_pattern = jsonencode({
+        source = ["com.mycompany.order"],
+        detail = {
+          orderType = ["order-pickup"]
         }
       })
     }
@@ -173,6 +186,12 @@ module "order_event" {
       {
         name = "OrderQueue"
         arn  = module.order_queue.queue_arn
+      }
+    ]
+    PickupOrderRule = [
+      {
+        name = "PickupOrderTopic"
+        arn  = module.pickup_order_topic.topic_arn
       }
     ]
   }
@@ -195,6 +214,20 @@ module "pickup_order_topic" {
     email = {
       protocol = "email"
       endpoint = local.sns.subscription.email
+    }
+  }
+
+  topic_policy_statements = {
+    sub = {
+      actions = [
+        "sns:Publish"
+      ]
+      principals = [{
+        type = "Service"
+        identifiers = [
+          "events.amazonaws.com"
+        ]
+      }]
     }
   }
 }
