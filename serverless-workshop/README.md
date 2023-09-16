@@ -1,5 +1,7 @@
 # [Serverless Workshop](https://catalog.us-east-1.prod.workshops.aws/workshops/4923c0ff-6470-46e1-9884-7c6ee63e7136/ko-KR)
 
+[:newspaper:아티클:kr:](https://flavono123.oopy.io/posts/terraforming-aws-serverless-workshop)
+
 ## [시작 전 준비 사항](https://catalog.us-east-1.prod.workshops.aws/workshops/4923c0ff-6470-46e1-9884-7c6ee63e7136/ko-KR/start)
 
 - [사전 환경 구성(IAM Role)](https://catalog.us-east-1.prod.workshops.aws/workshops/4923c0ff-6470-46e1-9884-7c6ee63e7136/ko-KR/start/cloudformation)
@@ -62,3 +64,5 @@
 ```bash
 terraform destroy
 ```
+---
+Learn AWS and Terraform with ChatGPT❤️
