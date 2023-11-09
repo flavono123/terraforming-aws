@@ -13,6 +13,18 @@ locals {
     , "Super-Intern"
     , "Super-Pro"
   ]
+
+  # Group
+  iam_groups = {
+    Dev = {
+      users       = ["Dev-Intern", "Dev-Pro"]
+      policy_arns = ["arn:aws:iam::aws:policy/AmazonEC2FullAccess"]
+    },
+    Super = {
+      users       = ["Super-Intern", "Super-Pro"]
+      policy_arns = ["arn:aws:iam::aws:policy/AdministratorAccess"]
+    }
+  }
 }
 
 module "iam_user" {
@@ -29,4 +41,15 @@ module "iam_user" {
   force_destroy = true
 
   password_reset_required = false
+}
+
+module "iam_group_with_policies" {
+  source = "terraform-aws-modules/iam/aws//modules/iam-group-with-policies"
+
+  for_each = local.iam_groups
+  name     = each.key
+
+  group_users = each.value.users
+
+  custom_group_policy_arns = each.value.policy_arns
 }
