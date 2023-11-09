@@ -35,3 +35,13 @@
    3. 인라인 정책 (In-line policies): 단일 사용자 그룹 역할에 직접 추가하는 정책 (재활용 불가)
 2. 리소스 기반 정책 (Resource-based policies)
 3. 액세스 제어 리스트 (Access Control Lists, ACLs)
+
+### [자격증명 기반 정책(Identity-based policies)](https://catalog.us-east-1.prod.workshops.aws/workshops/dd23d392-bea4-483c-aefd-f62ed73f936d/en-US/iam-policies/identity-based-policies)
+
+[**사용자 권한 추가 (AWS 관리형 정책)**](https://catalog.us-east-1.prod.workshops.aws/workshops/dd23d392-bea4-483c-aefd-f62ed73f936d/en-US/iam-policies/identity-based-policies#(aws-))
+
+![aws-managed-policies](./img/aws-managed-policies.png)
+
+Super-Pro : AmazonEC2ReadOnlyAccess
+
+![aws-managed-policies-plural](./img/aws-managed-policies-plural.png)
