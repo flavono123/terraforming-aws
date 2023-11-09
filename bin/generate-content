@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# validate 1 arg required
+if [ $# -ne 1 ]; then
+  echo "Usage: generate-content <name>"
+  exit 1
+fi
+
+name=$1
+
+mkdir -p "$name"/img
+touch "$name"/README.md "$name"/main.tf
