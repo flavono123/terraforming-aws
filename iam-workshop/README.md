@@ -45,3 +45,9 @@
 Super-Pro : AmazonEC2ReadOnlyAccess
 
 ![aws-managed-policies-plural](./img/aws-managed-policies-plural.png)
+
+[**인라인 정책 (In-line policies)**](https://catalog.us-east-1.prod.workshops.aws/workshops/dd23d392-bea4-483c-aefd-f62ed73f936d/en-US/iam-policies/identity-based-policies#(in-line-policies))
+
+![inline-policy](./img/inline-policy.png)
+
+![inline-policy-plural](./img/inline-policy-plural.png)
