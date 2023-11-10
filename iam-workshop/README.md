@@ -79,3 +79,9 @@ Super-Pro : AmazonEC2ReadOnlyAccess
 ![role-switch](img/role-switch.png)
 
 ![role-switch-plural](img/role-switch-plural.png)
+
+### [EC2 인스턴스에 Role 부여](https://catalog.us-east-1.prod.workshops.aws/workshops/dd23d392-bea4-483c-aefd-f62ed73f936d/en-US/iam-roles/ec2-instance-assumes-role)
+
+![ec2-role](img/ec2-role.png)
+
+![ec2-role-plural](img/ec2-role-plural.png)

@@ -94,6 +94,13 @@ module "super_pro_ec2_create" {
   name = "Super-Pro-EC2-Create"
 
   instance_type = "t2.micro"
+
+  create_iam_instance_profile = true
+
+  iam_role_name = "builders-s3-read-only"
+  iam_role_policies = {
+    s3_read = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+  }
 }
 
 module "builders_s3_bucket" {
