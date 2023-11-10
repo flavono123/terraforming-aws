@@ -11,18 +11,22 @@ data "aws_caller_identity" "current" {}
 locals {
   iam_users = {
     Dev-Intern = {
-      policy_arns = []
+      policy_arns          = []
+      permissions_boundary = ""
     },
     Dev-Pro = {
-      policy_arns = []
+      policy_arns          = []
+      permissions_boundary = ""
     },
     Super-Intern = {
-      policy_arns = []
+      policy_arns          = []
+      permissions_boundary = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
     },
     Super-Pro = {
       policy_arns = [
         "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
       ]
+      permissions_boundary = ""
     }
   }
 
@@ -60,6 +64,8 @@ module "iam_user" {
   password_reset_required = false
 
   policy_arns = each.value.policy_arns
+
+  permissions_boundary = each.value.permissions_boundary
 }
 
 module "iam_group_with_policies" {

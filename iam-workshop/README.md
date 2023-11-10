@@ -51,3 +51,10 @@ Super-Pro : AmazonEC2ReadOnlyAccess
 ![inline-policy](./img/inline-policy.png)
 
 ![inline-policy-plural](./img/inline-policy-plural.png)
+
+[**권한 경계(Permissions boundaries)**](https://catalog.us-east-1.prod.workshops.aws/workshops/dd23d392-bea4-483c-aefd-f62ed73f936d/en-US/iam-policies/permissions-boundaries)
+
+![permission-boundaries](./img/permission-boundaries.png)
+
+
+![permission-boundaries-plural](./img/permission-boundaries-plural.png)
