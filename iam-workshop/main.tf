@@ -144,3 +144,32 @@ resource "aws_iam_user_policy" "builders_inline" {
     ]
   })
 }
+
+module "iam_assumable_role" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
+  version = "~> 5.30"
+
+  # STSAssumeRole
+  create_custom_role_trust_policy = true
+  custom_role_trust_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid    = "AllowAssumeRole"
+        Effect = "Allow"
+        Action = "sts:AssumeRole"
+        Principal = {
+          AWS = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/Dev-Pro"
+        }
+      },
+    ]
+  })
+
+  # 위임 받은 Role
+  create_role = true
+  custom_role_policy_arns = [
+    "arn:aws:iam::aws:policy/AdministratorAccess"
+  ]
+  role_name         = "builders-role"
+  role_requires_mfa = false
+}

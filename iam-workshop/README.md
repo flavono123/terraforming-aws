@@ -73,3 +73,9 @@ Super-Pro : AmazonEC2ReadOnlyAccess
 - 역할과 다른 AWS 계정의 IAM 사용자
 - Amazon Elastic Compute Cloud(Amazon EC2)와 같은 AWS가 제공하는 웹 - 서비스
 - SAML 2.0, OpenID Connect 또는 사용자 지정 구축 자격 증명 브로커와 호환되는 외부 자격 증명 공급자(IdP) 서비스에 의해 인증된 외부 사용자
+
+### [역할 전환(Role Switch)](https://catalog.us-east-1.prod.workshops.aws/workshops/dd23d392-bea4-483c-aefd-f62ed73f936d/en-US/iam-roles/role-switch)
+
+![role-switch](img/role-switch.png)
+
+![role-switch-plural](img/role-switch-plural.png)
