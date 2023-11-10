@@ -58,3 +58,9 @@ Super-Pro : AmazonEC2ReadOnlyAccess
 
 
 ![permission-boundaries-plural](./img/permission-boundaries-plural.png)
+
+[**리소스 기반 정책(Resource-based policies)**](https://catalog.us-east-1.prod.workshops.aws/workshops/dd23d392-bea4-483c-aefd-f62ed73f936d/en-US/iam-policies/resource-based-policies)
+
+![resource-based-policies](./img/resource-based-policies.png)
+
+![resource-based-policies-plural](./img/resource-based-policies-plural.png)

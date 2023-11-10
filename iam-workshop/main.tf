@@ -106,6 +106,22 @@ module "builders_s3_bucket" {
   block_public_policy     = false
   ignore_public_acls      = false
   restrict_public_buckets = false
+
+  attach_policy = true
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid = "Statement1"
+        Principal = {
+          AWS = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/Dev-Intern"
+        }
+        Effect   = "Allow"
+        Action   = "s3:*"
+        Resource = "${module.builders_s3_bucket.s3_bucket_arn}/*"
+      }
+    ]
+  })
 }
 
 # aws_iam_user_policy 리소스를 사용; 인라인 정책은 모듈이 없다
