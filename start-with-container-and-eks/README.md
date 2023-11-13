@@ -67,3 +67,13 @@ service/game-2048    LoadBalancer   172.20.53.228   a12f8214887e9442dbfccea6b785
 service/kubernetes   ClusterIP      172.20.0.1      <none>                                                                       443/TCP        93m
 ```
 ![service-result](./img/service-result.png)
+
+### [Namespace 배포](https://catalog.us-east-1.prod.workshops.aws/workshops/46236689-b414-4db8-b5fc-8d2954f2d94a/ko-KR/eks/60-namespace)
+
+![namespace-plural](./img/namespace-plural.png)
+
+```sh
+❯ k get po -n mynamespace
+NAME    READY   STATUS    RESTARTS   AGE
+nginx   1/1     Running   0          108s
+```
