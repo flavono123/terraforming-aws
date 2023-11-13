@@ -110,21 +110,36 @@ check "eks_status" {
 }
 
 
-# k2tf -f manifests/nginx-orange.yaml
-resource "kubernetes_pod" "nginx_orange" {
+# k2tf -f manifests/deployment.yaml
+resource "kubernetes_deployment" "nginx_deploy" {
   metadata {
-    name = "nginx-orange"
-
-    labels = {
-      run = "nginx-orange"
-    }
+    name = "nginx-deploy"
   }
 
   spec {
-    container {
-      name  = "orange"
-      image = "nginx"
+    replicas = 3
+
+    selector {
+      match_labels = {
+        app = "nginx-deploy"
+      }
+    }
+
+    template {
+      metadata {
+        labels = {
+          app = "nginx-deploy"
+        }
+      }
+
+      spec {
+        container {
+          name  = "nginx-container"
+          image = "nginx"
+        }
+      }
     }
   }
 }
+
 

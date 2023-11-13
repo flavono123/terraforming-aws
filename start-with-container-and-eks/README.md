@@ -29,3 +29,25 @@ ip-10-0-30-110.ap-northeast-2.compute.internal   Ready    <none>   19m   v1.28.3
 NAME           READY   STATUS    RESTARTS   AGE   IP           NODE                                             NOMINATED NODE   READINESS GATES
 nginx-orange   1/1     Running   0          72s   10.0.1.250   ip-10-0-30-110.ap-northeast-2.compute.internal   <none>           <none>
 ```
+
+### [ReplicaSet 배포](https://catalog.us-east-1.prod.workshops.aws/workshops/46236689-b414-4db8-b5fc-8d2954f2d94a/ko-KR/eks/30-replicaset)
+
+🔊 [kubernetes provider](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_v1)에서 지원하지 않는 리소스이기 때문에 건너뜀
+
+### [Deployment 배포](https://catalog.us-east-1.prod.workshops.aws/workshops/46236689-b414-4db8-b5fc-8d2954f2d94a/ko-KR/eks/40-deployment)
+
+![deployment-plural](./img/deployment-plural.png)
+
+```sh
+❯ k get deploy,rs,po
+NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/nginx-deploy   3/3     3            3  21s
+
+NAME                                      DESIRED   CURRENT   READY   AGE
+replicaset.apps/nginx-deploy-666c6fbf69   3         3         3       21s
+
+NAME                                READY   STATUS    RESTARTS   AGE
+pod/nginx-deploy-666c6fbf69-ghfdh   1/1     Running   0          20s
+pod/nginx-deploy-666c6fbf69-jzv4m   1/1     Running   0          21s
+pod/nginx-deploy-666c6fbf69-sv9j2   1/1     Running   0          20s
+```
