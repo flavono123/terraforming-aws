@@ -7,6 +7,11 @@ if [ $# -ne 1 ]; then
 fi
 
 name=$1
+tf_version="1.6.3"
 
 mkdir -p "$name"/img
-touch "$name"/README.md "$name"/main.tf
+touch "$name"/README.md
+echo "$tf_version" > "$name"/.terraform-version
+echo "terraform {
+  required_version = \"~> $tf_version\"
+}" > "$name"/main.tf
