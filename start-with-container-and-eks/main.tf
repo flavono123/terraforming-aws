@@ -110,10 +110,14 @@ check "eks_status" {
 }
 
 
-# k2tf -f manifests/deployment.yaml
-resource "kubernetes_deployment" "nginx_deploy" {
+# k2tf -f manifests/2048.yaml
+resource "kubernetes_deployment" "game_2048" {
   metadata {
-    name = "nginx-deploy"
+    name = "game-2048"
+
+    labels = {
+      run = "game-2048"
+    }
   }
 
   spec {
@@ -121,21 +125,26 @@ resource "kubernetes_deployment" "nginx_deploy" {
 
     selector {
       match_labels = {
-        app = "nginx-deploy"
+        app = "game-2048"
       }
     }
 
     template {
       metadata {
         labels = {
-          app = "nginx-deploy"
+          app = "game-2048"
         }
       }
 
       spec {
         container {
-          name  = "nginx-container"
-          image = "nginx"
+          name  = "game-2048"
+          image = "public.ecr.aws/kishorj/docker-2048:latest"
+
+          port {
+            container_port = 80
+            protocol       = "TCP"
+          }
         }
       }
     }
@@ -143,3 +152,22 @@ resource "kubernetes_deployment" "nginx_deploy" {
 }
 
 
+resource "kubernetes_service" "game_2048" {
+  metadata {
+    name = "game-2048"
+  }
+
+  spec {
+    port {
+      protocol    = "TCP"
+      port        = 80
+      target_port = "80"
+    }
+
+    selector = {
+      app = "game-2048"
+    }
+
+    type = "LoadBalancer"
+  }
+}

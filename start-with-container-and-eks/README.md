@@ -51,3 +51,19 @@ pod/nginx-deploy-666c6fbf69-ghfdh   1/1     Running   0          20s
 pod/nginx-deploy-666c6fbf69-jzv4m   1/1     Running   0          21s
 pod/nginx-deploy-666c6fbf69-sv9j2   1/1     Running   0          20s
 ```
+
+### [Service 배포](https://catalog.us-east-1.prod.workshops.aws/workshops/46236689-b414-4db8-b5fc-8d2954f2d94a/ko-KR/eks/50-loadbalancer)
+
+![service-plural](./img/service-plural.png)
+
+```sh
+❯ k get deploy,svc
+❯ k get deploy,svc
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/game-2048   3/3     3            3           4m31s
+
+NAME                 TYPE           CLUSTER-IP      EXTERNAL-IP                                                                  PORT(S)        AGE
+service/game-2048    LoadBalancer   172.20.53.228   a12f8214887e9442dbfccea6b7854a22-71956691.ap-northeast-2.elb.amazonaws.com   80:31822/TCP   4m31s
+service/kubernetes   ClusterIP      172.20.0.1      <none>                                                                       443/TCP        93m
+```
+![service-result](./img/service-result.png)
