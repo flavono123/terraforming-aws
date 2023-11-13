@@ -11,11 +11,21 @@
 
 ### [EKS 설치](https://catalog.us-east-1.prod.workshops.aws/workshops/46236689-b414-4db8-b5fc-8d2954f2d94a/ko-KR/eks/10-install)
 
-![eks-plural](./img/eks-plural.png.png)
+![eks-plural](./img/eks-plural.png)
 
 ```sh
 ❯ k get no
 NAME                                             STATUS   ROLES    AGE   VERSION
 ip-10-0-23-182.ap-northeast-2.compute.internal   Ready    <none>   21m   v1.28.3-eks-4f4795d
 ip-10-0-30-110.ap-northeast-2.compute.internal   Ready    <none>   19m   v1.28.3-eks-4f4795d
+```
+
+### [Pod 기본 명령어](https://catalog.us-east-1.prod.workshops.aws/workshops/46236689-b414-4db8-b5fc-8d2954f2d94a/ko-KR/eks/20-pod)
+
+![pod-basic-plural](./img/pod-basic-plural.png)
+
+```sh
+❯ k get po -owide
+NAME           READY   STATUS    RESTARTS   AGE   IP           NODE                                             NOMINATED NODE   READINESS GATES
+nginx-orange   1/1     Running   0          72s   10.0.1.250   ip-10-0-30-110.ap-northeast-2.compute.internal   <none>           <none>
 ```

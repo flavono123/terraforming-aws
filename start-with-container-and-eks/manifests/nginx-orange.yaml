@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-orange
+  labels:
+    run: nginx-orange
+spec:
+  containers:
+  - name: orange
+    image: nginx
