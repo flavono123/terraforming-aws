@@ -2,7 +2,18 @@ terraform {
   required_version = "~> 1.6.3"
 
   required_providers {
-    aws = "~> 5.25"
+    aws        = "~> 5.25"
+    kubernetes = "~> 2.23.0"
+  }
+}
+
+provider "kubernetes" {
+  host                   = module.eks.cluster_endpoint
+  cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
+  exec {
+    api_version = "client.authentication.k8s.io/v1beta1"
+    args        = ["eks", "get-token", "--cluster-name", module.eks.cluster_name]
+    command     = "aws"
   }
 }
 
@@ -97,3 +108,23 @@ check "eks_status" {
     error_message = "EKS cluster is ${module.eks.cluster_status}"
   }
 }
+
+
+# k2tf -f manifests/nginx-orange.yaml
+resource "kubernetes_pod" "nginx_orange" {
+  metadata {
+    name = "nginx-orange"
+
+    labels = {
+      run = "nginx-orange"
+    }
+  }
+
+  spec {
+    container {
+      name  = "orange"
+      image = "nginx"
+    }
+  }
+}
+
