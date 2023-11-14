@@ -110,64 +110,28 @@ check "eks_status" {
 }
 
 
-# k2tf -f manifests/2048.yaml
-resource "kubernetes_deployment" "game_2048" {
+# k2tf -f manifests/mynamespace.yaml
+resource "kubernetes_namespace" "mynamespace" {
   metadata {
-    name = "game-2048"
+    name = "mynamespace"
+  }
+}
+
+resource "kubernetes_pod" "nginx" {
+  metadata {
+    name      = "nginx"
+    namespace = "mynamespace"
 
     labels = {
-      run = "game-2048"
+      run = "nginx"
     }
   }
 
   spec {
-    replicas = 3
-
-    selector {
-      match_labels = {
-        app = "game-2048"
-      }
-    }
-
-    template {
-      metadata {
-        labels = {
-          app = "game-2048"
-        }
-      }
-
-      spec {
-        container {
-          name  = "game-2048"
-          image = "public.ecr.aws/kishorj/docker-2048:latest"
-
-          port {
-            container_port = 80
-            protocol       = "TCP"
-          }
-        }
-      }
+    container {
+      name  = "orange"
+      image = "nginx"
     }
   }
 }
 
-
-resource "kubernetes_service" "game_2048" {
-  metadata {
-    name = "game-2048"
-  }
-
-  spec {
-    port {
-      protocol    = "TCP"
-      port        = 80
-      target_port = "80"
-    }
-
-    selector = {
-      app = "game-2048"
-    }
-
-    type = "LoadBalancer"
-  }
-}
