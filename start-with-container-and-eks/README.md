@@ -77,3 +77,9 @@ service/kubernetes   ClusterIP      172.20.0.1      <none>                      
 NAME    READY   STATUS    RESTARTS   AGE
 nginx   1/1     Running   0          108s
 ```
+
+### 리소스 삭제
+
+```sh
+tf destroy
+```
